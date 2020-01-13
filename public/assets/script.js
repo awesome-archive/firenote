@@ -28,7 +28,7 @@ $(document)
     // Initialize Firebase
     var config = {
     apiKey: "AIzaSyBXiYAPGOYyg25soKJNjMk3nIvWUPLd6uQ",
-    authDomain: "markdown-14046.firebaseapp.com",
+    authDomain: "firenote.flinhong.com",
     databaseURL: "https://markdown-14046.firebaseio.com",
     projectId: "markdown-14046",
     storageBucket: "markdown-14046.appspot.com",
@@ -277,8 +277,10 @@ $(document)
             notebook = "Default Notebook";
         }
 
-        notedataRef = databaseRef.child(userID).child(notebook).child(fileName);
-        notefileRef = storageRef.child(userID).child(notebook).child(fileNameExt);
+        var fileNameKey = fileName.replace(new RegExp('\\/|\\.$#[]', 'g'),"_");  // file name validation for key
+        var fileNameExtKey = fileNameExt.replace(new RegExp('\\/|\\.$#[]', 'g'),"_");
+        notedataRef = databaseRef.child(userID).child(notebook).child(fileNameKey);
+        notefileRef = storageRef.child(userID).child(notebook).child(fileNameExtKey);
 
         notedataRef.once('value', function(snapshot) {
             var exists = (snapshot.val() !== null);

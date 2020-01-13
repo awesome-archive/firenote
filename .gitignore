@@ -1,5 +1,2 @@
-_site/
-.sass-cache/
-.jekyll-metadata
-
-cors-json-file.json
+database.rules.json
+.DS_Store
